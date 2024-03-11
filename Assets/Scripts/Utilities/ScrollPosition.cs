@@ -7,7 +7,6 @@ namespace Utilities
     public class ScrollPosition : MonoBehaviour
     {
         [SerializeField] private List<ContactView> _contacts = new List<ContactView>();
-
         [SerializeField] private RectTransform _content;
 
         private float _yPos;

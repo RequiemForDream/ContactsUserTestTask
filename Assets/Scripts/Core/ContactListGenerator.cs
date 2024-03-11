@@ -1,5 +1,4 @@
-﻿using Contacts;
-using Factories;
+﻿using Factories;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;

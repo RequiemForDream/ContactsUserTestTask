@@ -39,9 +39,10 @@ namespace Contacts
             SetContactData(_contactView);
             SubscribeEvents(_contactView);
             
-            if (!isFavorite)
+            if (!_isFavorite)
             {
                 _contactView.SetFavoriteIcon(_contactModel.NonmarkedAsFavoriteIcon);
+                
             }
             else
             {
@@ -101,10 +102,10 @@ namespace Contacts
                 else
                 {
                     _favoriteContactView.gameObject.SetActive(true);
-                    
                 }
 
                 _contactView.SetFavoriteIcon(_contactModel.FavoriteIcon);
+                _favoriteContactView.SetFavoriteIcon(_contactModel.FavoriteIcon);
                 OnMarkedAsFavorite?.Invoke(_contactData.id);
             }
             else

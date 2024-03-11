@@ -5,26 +5,28 @@ using System;
 
 namespace Utilities
 {
-    public class AvatarDownloader
+    public class Downloader
     {
         private string _savePath;
 
-        public void CheckFileExists(string picturePath, string pictureUrl)
+        public void CheckFileExists(string path, string url)
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            _savePath = Path.Combine(Application.persistentDataPath, picturePath);
+            _savePath = Path.Combine(Application.persistentDataPath, path);
 #else
-            _savePath = Path.Combine(Application.dataPath, picturePath);
+            _savePath = Path.Combine(Application.dataPath, path);
 #endif
             if (File.Exists(_savePath))
             {
-                Debug.Log("Downloaded");
+                OnFileExists();
             }
             else
             {
-                DownloadFile(pictureUrl, picturePath);
+                DownloadFile(url, path);
             }
         }
+
+        public virtual void OnFileExists() { }
 
         private void DownloadFile(string url, string fileName)
         {
@@ -41,14 +43,7 @@ namespace Utilities
 
         public virtual void DownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            if (e.Error == null)
-            {
-                Debug.Log("Download completed");
-            }
-            else
-            {
-                Debug.Log($"Error: {e.Error}");
-            }
+            
         }
     }
 }

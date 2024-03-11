@@ -14,8 +14,6 @@ namespace Core
         {
             if (CheckInternetConnection() == true)
             {
-                //var jsonDownloader = new JsonDownloader();
-                //jsonDownloader.CheckFileExists();
                 StartCoroutine(DownloadRoutine());
             }
         }
@@ -47,18 +45,26 @@ namespace Core
             {
                 var url = DataClass.PICTURE_URLS[i];
                 var path = DataClass.PICTURE_PATHS[i];
-                var avatarDownloader = new AvatarDownloader();
+                var avatarDownloader = new Downloader();
                 avatarDownloader.CheckFileExists(path, url);
             }
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(DataClass.DOWNLOAD_TIME);
             DownloadJsonData();
         }
 
         private void DownloadJsonData()
         {
+            var url = DataClass.JSON_URL_DOWNLOAD;
+            var path = DataClass.JSON_FILE_NAME;
             var downloader = new JsonDownloader();
-            downloader.CheckFileExists();
+            downloader.OnDownloadComplete += LoadScene;
+            downloader.CheckFileExists(path, url);
+        }
+
+        private void LoadScene()
+        {
+            SceneLoader.LoadSceneBySceneIndex(DataClass.SAMPLE_SCENE);
         }
     }
 }
