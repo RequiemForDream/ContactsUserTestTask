@@ -1,7 +1,7 @@
-﻿using System.Net;
-using System;
-using UnityEngine;
+﻿using System;
 using System.IO;
+using System.Net;
+using UnityEngine;
 
 namespace Utilities
 {
@@ -50,10 +50,8 @@ namespace Utilities
             Debug.Log("Download Progress = " + e.ProgressPercentage + "%");
         }
 
-        private void DownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        public virtual void DownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            
-            
             if (e.Error == null)
             {
                 Debug.Log("Download completed");

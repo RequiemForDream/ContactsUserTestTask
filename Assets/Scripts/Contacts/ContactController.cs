@@ -52,7 +52,7 @@ namespace Contacts
 
         private void SetContactData(ContactView contactView)
         {
-            var avatar = GetSprite();
+            var avatar = GetSprite(_contactModel.ProfileAvatar);
             contactView.SetData(_contactData.last_name, _contactData.first_name, _contactData.ip_address, _contactData.email,
                 avatar);
         }
@@ -68,8 +68,9 @@ namespace Contacts
         {
             _profileScreen.gameObject.SetActive(true);
             _profileScreen.transform.SetAsLastSibling();
+            var sprite = GetSprite(_contactModel.ProfileScreenAvatar);
             _profileScreen.SetData(_contactData.last_name, _contactData.first_name, _contactData.ip_address, _contactData.email,
-                _contactData.gender);
+                _contactData.gender, sprite);
             if (_isFavorite)
             {
                 _profileScreen.SetFavoriteIcon(_contactModel.FavoriteIcon);
@@ -115,12 +116,12 @@ namespace Contacts
             }
         }
 
-        private Sprite GetSprite()
+        private Sprite GetSprite(Sprite spriteToSet)
         {
             Sprite avatar = _sprite;
             if (_sprite == null)
             {
-                avatar = _contactModel.ProfileAvatar;
+                avatar = spriteToSet;
             }
             return avatar;
         }

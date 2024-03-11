@@ -33,9 +33,9 @@ namespace Core
             return new FavoriteContactFactory(_favoriteContactsScreen.ContactsParent, _contactConfiguration);
         }
 
-        private FavoriteListGenerator BindFavoriteListGenerator(ContactFactory contactFactory, ContactData[] contactData)
+        private ContactListGenerator BindFavoriteListGenerator(ContactFactory contactFactory, ContactData[] contactData)
         {
-            return new FavoriteListGenerator(contactFactory, contactData);
+            return new ContactListGenerator(contactFactory, contactData);
         }
 
         private ContactData[] GetJsonData()

@@ -18,6 +18,7 @@ namespace Contacts
         [SerializeField] private Image _contactAvatar;
         [SerializeField] private Button _addToFavoritesBtn;
         [SerializeField] private Button _openProfileBtn;
+        public GameObject _contact;
 
         private void Awake()
         {

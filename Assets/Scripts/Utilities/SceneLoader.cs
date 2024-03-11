@@ -2,7 +2,7 @@
 
 namespace Utilities
 {
-    public class SceneLoader
+    public struct SceneLoader
     {
         public static void LoadSceneBySceneIndex(int sceneIndex)
         {

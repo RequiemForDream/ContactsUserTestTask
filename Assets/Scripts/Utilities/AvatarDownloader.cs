@@ -39,7 +39,7 @@ namespace Utilities
 #endif 
         }
 
-        private void DownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        public virtual void DownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             if (e.Error == null)
             {

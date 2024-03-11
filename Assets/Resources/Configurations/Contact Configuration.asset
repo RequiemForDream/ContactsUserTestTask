@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0fdbb3d4b4b1c47b6dd57bb28fbb79, type: 3}
   m_Name: Contact Configuration
   m_EditorClassIdentifier: 
-  _contactView: {fileID: 4946370883447067465, guid: 90e7391d7a9c6764f8700db1304b5b05, type: 3}
+  _contactView: {fileID: 4824794730867659140, guid: 1abaefee2fd1bc341be1933353e9ca3e, type: 3}
   _contactModel:
     _favoriteMarkerSprite: {fileID: 21300000, guid: 2d687529de9f64143b79312e1e17282f, type: 3}
     _unfavoriteMarkerSprite: {fileID: 21300000, guid: fdab6fbd5f9aa554fa08b51010eff3d8, type: 3}

@@ -1877,7 +1877,7 @@ MonoBehaviour:
   _email: {fileID: 6681357537779782405}
   _ipAddress: {fileID: 6681357539468713001}
   _gender: {fileID: 3545151193455751038}
-  _profileAvatar: {fileID: 6681357537805031559}
+  _profileAvatar: {fileID: 6681357539297176083}
   _favoriteIcon: {fileID: 6681357538046562741}
   _closeProfileScreenBtn: {fileID: 2166678011895767632}
 --- !u!1 &6681357539297176085
