@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _internetConnectionText: {fileID: 77165268}
-  _loadingText: {fileID: 0}
+  _loadingText: {fileID: 755787527}
 --- !u!1 &755787525
 GameObject:
   m_ObjectHideFlags: 0
