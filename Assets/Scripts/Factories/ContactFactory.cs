@@ -1,39 +1,33 @@
 ﻿using Contacts;
 using Factories.Interfaces;
+using UI;
 using UnityEngine;
-using Utilities;
 using Object = UnityEngine.Object;
 
 namespace Factories
 {
-    public class ContactFactory : IFactory<Contact>
+    public class ContactFactory : IFactory<ContactController>
     {
         private readonly ContactConfiguration _contactConfiguration;
-        private readonly Transform _contactParent;
+        private readonly Transform _employyeListParent;
+        private readonly ProfileScreen _profileScreen;
+        private readonly FavoriteContactFactory _favoriteContactFactory;
 
-        private readonly ContactData[] _contacts;
-        private int _contactCount = 0;
-
-        public ContactFactory(ContactConfiguration contactConfiguration, Transform contactParent, ContactData[] contacts)
+        public ContactFactory(ContactConfiguration contactConfiguration, Transform employeeList, ProfileScreen profileScreen,
+            FavoriteContactFactory favoriteContactFactory)
         {
             _contactConfiguration = contactConfiguration;
-            _contactParent = contactParent;
-            _contacts = contacts;
+            _favoriteContactFactory = favoriteContactFactory;
+            _employyeListParent = employeeList;
+            _profileScreen = profileScreen;
         }
 
-        public Contact Create()
-        {
-            //if (_contactCount == _contacts.Length)
-            //{
-            //    return null;
-            //}
-            
+        public ContactController Create()
+        {            
+            var contactView = Object.Instantiate(_contactConfiguration.ContactView, _employyeListParent, false);
 
-            var contactView = Object.Instantiate(_contactConfiguration.ContactView, _contactParent, false);
-            var contact = new Contact(contactView, _contactConfiguration.ContactModel, _contactParent.transform,
-                _contacts[_contactCount]);
-
-            _contactCount++;
+            var contact = new ContactController(contactView, _profileScreen, _contactConfiguration.ContactModel,
+                _favoriteContactFactory);
 
             return contact;
         }

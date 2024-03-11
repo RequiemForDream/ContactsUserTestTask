@@ -16,6 +16,7 @@ namespace UI
         [Header("BtnPictures")]
         [SerializeField] private Sprite _rightBtnSelectable;
         [SerializeField] private Sprite _leftBtnSelectable;
+        [SerializeField] private Sprite _unselectableBtn;
 
         private void Awake()
         {
@@ -25,14 +26,16 @@ namespace UI
 
         private void OpenEmployeeScreen()
         {
-            _employeeScreen.gameObject.SetActive(true);
+            _openEmployeeScreenBtn.GetComponent<Image>().sprite = _leftBtnSelectable;
+            _openFavoriteContactsScreenBtn.GetComponent<Image>().sprite = _unselectableBtn;
             _favoriteContactsScreen.gameObject.SetActive(false);
         }
 
         private void OpenFavoriteContactsScreen()
         {
+            _openEmployeeScreenBtn.GetComponent<Image>().sprite = _unselectableBtn;
+            _openFavoriteContactsScreenBtn.GetComponent<Image>().sprite = _rightBtnSelectable;
             _favoriteContactsScreen.gameObject.SetActive(true);
-            _employeeScreen.gameObject.SetActive(false);
         }
     }
 }

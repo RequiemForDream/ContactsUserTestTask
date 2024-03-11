@@ -6,12 +6,14 @@ namespace Utilities
 {
     public class JsonParser
     {
+        private string _filePath;
+
         public Response LoadFromJson()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            var _filePath = Path.Combine(Application.persistentDataPath, _fileName);
+            _filePath = Path.Combine(Application.persistentDataPath, DataClass.JSON_FILE_NAME);
 #else
-            var _filePath = Path.Combine(Application.dataPath, DataClass.JSON_FILE_NAME);
+            _filePath = Path.Combine(Application.dataPath, DataClass.JSON_FILE_NAME);
 #endif
             var json = File.ReadAllText(_filePath);
 

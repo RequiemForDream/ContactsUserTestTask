@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,69 +7,51 @@ namespace Contacts
 {
     public class ContactView : MonoBehaviour
     {
+        public event Action OnDestroyHandler;
+        public event Action OnAddToFavoritesBtnClick;
+        public event Action OnOpenProfileBtnClick;
+
         [SerializeField] private TMP_Text _lastName;
-        public string LastName
-        {
-            get
-            {
-                return _lastName.text;
-            }
-            set
-            {
-                _lastName.text = value;
-            }
-        }
-
-        [SerializeField] private TMP_Text _firstName;
-        public string FirstName
-        {
-            get
-            {
-                return _firstName.text;
-            }
-            set
-            {
-                _firstName.text = value;
-            }
-        }
-
-        [SerializeField] private TMP_Text _contactEmailText;
-        public string ContactEmail
-        {
-            get
-            {
-                return _contactEmailText.text;
-            }
-            set 
-            { 
-                _contactEmailText.text = value;
-            }
-        }
-
         [SerializeField] private TMP_Text _contactIPText;
-        public string ContactIP
+        [SerializeField] private TMP_Text _contactEmailText;
+        [SerializeField] private TMP_Text _firstName;
+        [SerializeField] private Image _contactAvatar;
+        [SerializeField] private Button _addToFavoritesBtn;
+        [SerializeField] private Button _openProfileBtn;
+
+        private void Awake()
         {
-            get
-            {
-                return _contactIPText.text;
-            }
-            set
-            {
-                _contactIPText.text = value;
-            }
+            _addToFavoritesBtn.onClick.AddListener(MarkAsFavorite);
+            _openProfileBtn.onClick.AddListener(OpenProfileScreen);
         }
 
-        [SerializeField] private Image _contactAvatar;
-        public Sprite ContactAvatar
+        public void SetData(string lastName, string firstName, string iPAddress, string email, Sprite sprite)
         {
-            get
-            {
-                return _contactAvatar.sprite;
-            }
-            set
-            {
-                _contactAvatar.sprite = value;
-            }
+            _lastName.text = lastName;  
+            _firstName.text = firstName;
+            _contactIPText.text = iPAddress;
+            _contactEmailText.text = email;
+            _contactAvatar.sprite = sprite;
+        }
+
+        public void SetFavoriteIcon(Sprite favoriteIcon)
+        {
+            _addToFavoritesBtn.image.sprite = favoriteIcon;
+        }
+
+        private void MarkAsFavorite()
+        {
+            OnAddToFavoritesBtnClick?.Invoke();
+        }
+
+        private void OpenProfileScreen()
+        {
+            OnOpenProfileBtnClick?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            OnDestroyHandler?.Invoke();    
         }
     }
 }

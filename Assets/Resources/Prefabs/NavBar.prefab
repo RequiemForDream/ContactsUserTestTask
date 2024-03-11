@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e761fce7321e5134294717a643bc3d0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccca9655fefd5cb4ebd0c730f3b2feee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -461,11 +461,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a8179e455dcd8468310eaf71d9c09c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isActiveByAwake: 0
   _employeeScreen: {fileID: 0}
   _favoriteContactsScreen: {fileID: 0}
-  _openEmployeeScreenBtn: {fileID: 0}
-  _openFavoriteContactsScreenBtn: {fileID: 0}
+  _openEmployeeScreenBtn: {fileID: 254847671834459037}
+  _openFavoriteContactsScreenBtn: {fileID: 254847671223363422}
+  _rightBtnSelectable: {fileID: 21300000, guid: e761fce7321e5134294717a643bc3d0b, type: 3}
+  _leftBtnSelectable: {fileID: 21300000, guid: 957ec622ac6e6ee458f7b31e87d6da59, type: 3}
+  _unselectableBtn: {fileID: 21300000, guid: ccca9655fefd5cb4ebd0c730f3b2feee, type: 3}
 --- !u!1 &254847671628014032
 GameObject:
   m_ObjectHideFlags: 0

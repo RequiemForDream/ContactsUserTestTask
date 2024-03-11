@@ -2,7 +2,7 @@
 
 namespace UI
 {
-    public class EmployeeScreen : Screen
+    public class EmployeeScreen : MonoBehaviour
     {
         [SerializeField] private Transform _contactsData;
         public Transform ContactsParent
@@ -13,4 +13,5 @@ namespace UI
             }
         }
     }
+    
 }

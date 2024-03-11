@@ -1,9 +1,7 @@
 using Contacts;
 using Factories;
-using System.Collections;
 using UI;
 using UnityEngine;
-using UnityEngine.Networking;
 using Utilities;
 
 namespace Core
@@ -12,47 +10,39 @@ namespace Core
     {
         [SerializeField] private ContactConfiguration _contactConfiguration;
         [SerializeField] private EmployeeScreen _employeeScreen;
-        //public Response Response;
+        [SerializeField] private FavoriteContactsScreen _favoriteContactsScreen;
+        [SerializeField] private ProfileScreen _profileScreenView;
 
         private void Awake()
         {
             var contacts = GetJsonData();
-            var contactFactory = BindContactFactory(contacts);
-
-            for (int i = 0; i < 20; i++)
-            {
-                contactFactory.Create();
-            }
+            var favoriteContactFactory = BindFavoriteContactFactory();
+            var contactFactory = BindContactFactory(favoriteContactFactory);
+            var favoriteListGenerator = BindFavoriteListGenerator(contactFactory, contacts);
+            favoriteListGenerator.Initilialize();
         }
 
-        private ContactFactory BindContactFactory(ContactData[] contacts)
+        private ContactFactory BindContactFactory(FavoriteContactFactory favoriteContactFactory)
         {
-            return new ContactFactory(_contactConfiguration, _employeeScreen.ContactsParent, contacts);
+            return new ContactFactory(_contactConfiguration, _employeeScreen.ContactsParent, _profileScreenView,
+                favoriteContactFactory);
         }
 
-        private void Start()
+        private FavoriteContactFactory BindFavoriteContactFactory()
         {
-            //StartCoroutine(TestWebRequest());
-            //JsonDownloader jsonDownloader = new JsonDownloader();
-            //jsonDownloader.DownloadFile();
-            
-            //Debug.Log(Response.data.Length);
+            return new FavoriteContactFactory(_favoriteContactsScreen.ContactsParent, _contactConfiguration);
+        }
+
+        private FavoriteListGenerator BindFavoriteListGenerator(ContactFactory contactFactory, ContactData[] contactData)
+        {
+            return new FavoriteListGenerator(contactFactory, contactData);
         }
 
         private ContactData[] GetJsonData()
         {
             JsonParser jsonParser = new JsonParser();
             var contacts = jsonParser.LoadFromJson();
-            //Response = contacts;
             return contacts.data;
-        }
-
-        private IEnumerator TestWebRequest()
-        {
-            UnityWebRequest request = UnityWebRequest.Get(DataClass.JSON_URL_DOWNLOAD);
-            yield return request.SendWebRequest();
-
-            //Debug.Log(request.downloadHandler.text);
         }
     }
 }
