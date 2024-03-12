@@ -4,7 +4,7 @@ namespace Utilities
 {
     public class JsonDownloader : Downloader
     {
-        public event Action OnDownloadComplete;
+        public override event Action OnDownloadComplete;
 
         public override void OnFileExists()
         {

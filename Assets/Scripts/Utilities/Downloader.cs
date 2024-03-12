@@ -7,6 +7,8 @@ namespace Utilities
 {
     public class Downloader
     {
+        public virtual event Action OnDownloadComplete;
+
         private string _savePath;
 
         public void CheckFileExists(string path, string url)
@@ -26,7 +28,12 @@ namespace Utilities
             }
         }
 
-        public virtual void OnFileExists() { }
+        public virtual void OnFileExists()
+        {
+            OnDownloadComplete?.Invoke();
+            Debug.Log("Downloaded");
+        }
+
 
         private void DownloadFile(string url, string fileName)
         {

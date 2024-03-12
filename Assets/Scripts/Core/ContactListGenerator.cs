@@ -22,7 +22,7 @@ namespace Core
             LoadData();
 
             AvatarsGenerator avatarsGenerator = new AvatarsGenerator();
-            for (int i = 0; i < _contactsData.Length; i++)
+            for (int i = 0; i < 50; i++)
             {
                 bool isFavorite;
 

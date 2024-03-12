@@ -16,6 +16,8 @@ namespace UI
         [SerializeField] private Button _closeProfileScreenBtn;
         [SerializeField] private FavoriteContactsScreen _favoriteContactsScreen;
 
+        private bool _isActive;
+
         private void Awake()
         {
             _closeProfileScreenBtn.onClick.AddListener(CloseProfileScreen);
@@ -23,6 +25,7 @@ namespace UI
 
         public void SetData(string lastName, string firstName, string iPAddress, string email, string gender, Sprite sprite)
         {
+            _isActive = _favoriteContactsScreen.gameObject.activeInHierarchy;
             _favoriteContactsScreen.gameObject.SetActive(false);
             _firstName.text = firstName;
             _lastName.text = lastName;
@@ -39,7 +42,8 @@ namespace UI
 
         private void CloseProfileScreen()
         {
-            _favoriteContactsScreen.gameObject.SetActive(true);
+            
+            _favoriteContactsScreen.gameObject.SetActive(_isActive);
             gameObject.SetActive(false);
         }
     }

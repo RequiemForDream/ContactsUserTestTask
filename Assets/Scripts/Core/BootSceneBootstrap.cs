@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Utilities;
@@ -9,12 +10,21 @@ namespace Core
     {
         [SerializeField] private TMP_Text _internetConnectionText;
         [SerializeField] private TMP_Text _loadingText;
+        
+        private int _downalodImagesCount;
 
         private void Awake()
         {
             if (CheckInternetConnection() == true)
             {
-                StartCoroutine(DownloadRoutine());
+                for (int i = 0; i < DataClass.PICTURE_URLS.Length; i++)
+                {
+                    var url = DataClass.PICTURE_URLS[i];
+                    var path = DataClass.PICTURE_PATHS[i];
+                    var avatarDownloader = new Downloader();
+                    avatarDownloader.OnDownloadComplete += AddToList;
+                    avatarDownloader.CheckFileExists(path, url);
+                }
             }
         }
 
@@ -38,19 +48,14 @@ namespace Core
 
             return false;
         }
-
-        private IEnumerator DownloadRoutine()
+        private void AddToList()
         {
-            for (int i = 0; i < DataClass.PICTURE_URLS.Length; i++)
+            _downalodImagesCount++;
+            if (_downalodImagesCount == DataClass.PICTURE_URLS.Length)
             {
-                var url = DataClass.PICTURE_URLS[i];
-                var path = DataClass.PICTURE_PATHS[i];
-                var avatarDownloader = new Downloader();
-                avatarDownloader.CheckFileExists(path, url);
+                Debug.Log("sdas");
+                DownloadJsonData();
             }
-
-            yield return new WaitForSeconds(DataClass.DOWNLOAD_TIME);
-            DownloadJsonData();
         }
 
         private void DownloadJsonData()

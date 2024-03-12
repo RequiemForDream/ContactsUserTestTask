@@ -7,7 +7,6 @@
         public const string JSON_URL_DOWNLOAD = "https://drive.google.com/uc?export=download&id=1YvE6Y5-vxVWXrrYyb83ssqMfVUUkndLw";
         public const string PICTURES_URL_DOWNLOAD = "https://drive.google.com/uc?export=download&id=1klXXiNbbUzBe46FeKz3WnoEO4QY4gf4i";
         public const int SAMPLE_SCENE = 1;
-        public const float DOWNLOAD_TIME = 2.5f;
 
         public static string[] PICTURE_URLS = 
             {
